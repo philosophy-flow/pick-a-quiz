@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Category from './Category';
+import Quiz from './Quiz/Quiz';
 
 
 function App() {
@@ -13,45 +14,48 @@ function App() {
 
 
   useEffect(() => {
-    let categoryId;
-    switch (activeCategory) {
-      case 'Books':
-        categoryId = '10';
-        break;
-      case 'Video Games':
-        categoryId = '15';
-        break;
-      case 'Film':
-        categoryId = '11';
-        break;
-      case 'Computers':
-        categoryId = '18';
-        break;
-      case 'Art':
-        categoryId = '25';
-        break;
-      case 'Mathematics':
-        categoryId = '19';
-        break;
-      case 'Politics':
-        categoryId = '24';
-        break;
-      case 'Animals':
-        categoryId = '27';
-        break;
-      default:
-        break;
+    if (activeCategory) {
+      let categoryId;
+      switch (activeCategory) {
+        case 'Books':
+          categoryId = '10';
+          break;
+        case 'Video Games':
+          categoryId = '15';
+          break;
+        case 'Film':
+          categoryId = '11';
+          break;
+        case 'Computers':
+          categoryId = '18';
+          break;
+        case 'Art':
+          categoryId = '25';
+          break;
+        case 'Mathematics':
+          categoryId = '19';
+          break;
+        case 'Politics':
+          categoryId = '24';
+          break;
+        case 'Animals':
+          categoryId = '27';
+          break;
+        default:
+          break;
+      }
+      const url =
+      `https://opentdb.com/api.php?amount=10&encode=url3986&type=multiple&category=${categoryId}`;
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          setQuizData(data.results)
+          setActiveScreen('quiz')
+        });
     }
-    const url =
-    `https://opentdb.com/api.php?amount=10&type=multiple&category=${categoryId}`;
-
-    fetch(url)
-      .then(response => response.json())
-      .then(data => setQuizData(data.results));
   }, [activeCategory])
 
 
-  console.log(quizData);
   return (
     <div className="App">
       {
@@ -103,6 +107,7 @@ function App() {
             />
           </div>
       }
+      {activeScreen === 'quiz' && <Quiz quizData={quizData} />}
     </div>
   );
 }
