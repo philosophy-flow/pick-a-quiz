@@ -1,10 +1,57 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import Category from './Category';
 
 
 function App() {
   const [activeScreen, setActiveScreen] = useState('title');
+  const [activeCategory, setActiveCategory] = useState('');
+  const [quizData, setQuizData] = useState('');
+
+  function handleCategorySelect (selection) {
+    setActiveCategory(selection);
+  }
 
 
+  useEffect(() => {
+    let categoryId;
+    switch (activeCategory) {
+      case 'Books':
+        categoryId = '10';
+        break;
+      case 'Video Games':
+        categoryId = '15';
+        break;
+      case 'Film':
+        categoryId = '11';
+        break;
+      case 'Computers':
+        categoryId = '18';
+        break;
+      case 'Art':
+        categoryId = '25';
+        break;
+      case 'Mathematics':
+        categoryId = '19';
+        break;
+      case 'Politics':
+        categoryId = '24';
+        break;
+      case 'Animals':
+        categoryId = '27';
+        break;
+      default:
+        break;
+    }
+    const url =
+    `https://opentdb.com/api.php?amount=10&type=multiple&category=${categoryId}`;
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => setQuizData(data.results));
+  }, [activeCategory])
+
+
+  console.log(quizData);
   return (
     <div className="App">
       {
@@ -22,14 +69,38 @@ function App() {
       {
         activeScreen === 'categories' &&
           <div className="categories-container">
-            <button className="category">Books</button>
-            <button className="category">Video Games</button>
-            <button className="category">Film</button>
-            <button className="category">Computers</button>
-            <button className="category">Art</button>
-            <button className="category">Mathematics</button>
-            <button className="category">Politics</button>
-            <button className="category">Animals</button>
+            <Category
+              name='Books'
+              handleCategorySelect={handleCategorySelect}
+            />
+            <Category
+              name='Video Games'
+              handleCategorySelect={handleCategorySelect}
+            />
+            <Category
+              name='Film'
+              handleCategorySelect={handleCategorySelect}
+            />
+            <Category
+              name='Computers'
+              handleCategorySelect={handleCategorySelect}
+            />
+            <Category
+              name='Art'
+              handleCategorySelect={handleCategorySelect}
+            />
+            <Category
+              name='Mathematics'
+              handleCategorySelect={handleCategorySelect}
+            />
+            <Category
+              name='Politics'
+              handleCategorySelect={handleCategorySelect}
+            />
+            <Category
+              name='Animals'
+              handleCategorySelect={handleCategorySelect}
+            />
           </div>
       }
     </div>
