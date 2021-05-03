@@ -4,7 +4,7 @@ import './Quiz.css';
 import React, {useState} from 'react';
 import shuffle from './shuffleArray.js'
 
-const Quiz = ({quizData}) => {
+const Quiz = ({quizData, backToCategory}) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
@@ -20,7 +20,7 @@ const Quiz = ({quizData}) => {
 
   // format answer array for each question
   formattedData.forEach((item, index) => {
-    item.allAnswers = decodeURIComponent(item.allAnswers).split(',');
+    item.allAnswers = item.allAnswers.map(answer => decodeURIComponent(answer));
   });
 
 
@@ -46,7 +46,7 @@ const Quiz = ({quizData}) => {
           <span>
             You scored {score} out of {formattedData.length}
           </span>
-          <button>Back to Category Selection</button>
+          <button onClick={backToCategory}>Back to Category Selection</button>
         </div>
       ) :
         (<div className="question-section">

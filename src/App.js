@@ -45,7 +45,8 @@ function App() {
           break;
       }
       const url =
-      `https://opentdb.com/api.php?amount=10&encode=url3986&type=multiple&category=${categoryId}`;
+      `https://opentdb.com/api.php?amount=10&encode=url3986&type=multiple&difficulty=easy&category=${categoryId}`;
+      
       fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -54,6 +55,13 @@ function App() {
         });
     }
   }, [activeCategory])
+
+
+
+  // reset app to category selection
+  function backToCategory() {
+    setActiveScreen('categories');
+  }
 
 
   return (
@@ -107,7 +115,12 @@ function App() {
             />
           </div>
       }
-      {activeScreen === 'quiz' && <Quiz quizData={quizData} />}
+      {activeScreen === 'quiz' &&
+        <Quiz
+          quizData={quizData}
+          backToCategory={backToCategory}
+        />
+      }
     </div>
   );
 }
