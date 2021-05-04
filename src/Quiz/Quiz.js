@@ -2,7 +2,8 @@ import './Quiz.css';
 
 
 import React, {useState} from 'react';
-import shuffle from './shuffleArray.js'
+import shuffle from './shuffleArray.js';
+import {motion, AnimatePresence} from 'framer-motion';
 
 const Quiz = ({quizData, backToCategory}) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -95,19 +96,28 @@ const Quiz = ({quizData, backToCategory}) => {
           </div>
         </div>)
       }
-      {showWrong ? (
-        <div className="wrong-answer-container">
-          {
-            wrongAnswers.map(answer => (
-              <div key={answer.question} className="wrong-answer">
-                <p>Question: {answer.question}</p>
-                <p className="your-answer">Your answer: {answer.selection}</p>
-                <p className="correct-answer">Correct answer: {answer.correctAnswer}</p>
-              </div>
-            ))
-          }
-        </div>
-      ) : null}
+      <AnimatePresence>
+        {showWrong ? (
+          <motion.div
+            className="wrong-answer-container"
+            style={{overflow: 'hidden'}}
+            initial={{height: 0}}
+            animate={{height: 'auto'}}
+            exit={{height: 0}}
+            transition={{duration: .3}}
+          >
+            {
+              wrongAnswers.map(answer => (
+                <div key={answer.question} className="wrong-answer">
+                  <p>Question: {answer.question}</p>
+                  <p className="your-answer">Your answer: {answer.selection}</p>
+                  <p className="correct-answer">Correct answer: {answer.correctAnswer}</p>
+                </div>
+              ))
+            }
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </div>
   );
 };
