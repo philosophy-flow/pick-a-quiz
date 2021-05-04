@@ -6,7 +6,7 @@
 
 A trivia quiz application that allows the user to select from multiple categories and then take a trivia quiz. After answering all questions the user is able to see their score and view all of the missed questions and correct answers.
 
-[Live Demo](https://wizardly-jang-98f7e2.netlify.app/)
+[Live Demo](https://pickaquiz.netlify.app/)
 
 ### Built With
 
