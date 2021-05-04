@@ -4,7 +4,7 @@
 
 ![screenshot](./quiz-app-demo.png)
 
-A trivia quiz application that allows the user to select from multiple categories and then take a trivia quiz. After answering all questions the user is able to see their score and view all of the missed questions and correct answers.
+An application that allows the user to select from multiple categories and then take a trivia quiz. After answering all questions the user is able to see their score and view all of the missed questions and correct answers.
 
 [Live Demo](https://pickaquiz.netlify.app/)
 
