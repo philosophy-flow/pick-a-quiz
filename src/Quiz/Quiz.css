@@ -52,17 +52,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 5rem 0;
 }
 
 .score-text {
   font-size: 2rem;
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .score-button {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   padding: 1rem;
   border-radius: 50px;
   border: none;
@@ -70,9 +69,28 @@
   background-color: rgb(42, 124, 182);
   color: #fff;
   transition: .3s;
+  margin-bottom: 1.25rem;
 }
 
 .score-button:hover {
   background-color: rgba(42, 124, 182, 0.8);
   transition: .3s;
+}
+
+
+/* WRONG ANSWERS */
+.wrong-answer {
+  margin: 1.33rem 0;
+}
+
+.wrong-answer p {
+  font-size: .9rem;
+}
+
+.your-answer {
+  color: red;
+}
+
+.correct-answer {
+  color: green;
 }

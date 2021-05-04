@@ -39,9 +39,21 @@ const Quiz = ({quizData, backToCategory}) => {
         )
       }
     } else {
+      // handle case where last answer is wrong
+      if (selection !== correctAnswer) {
+        setWrongAnswers(wrongAnswers =>
+          [...wrongAnswers, {question, selection, correctAnswer}]
+        )
+      }
+
       setShowScore(true);
       setCurrentQuestion(0);
     }
+  }
+
+
+  function handleWrongAnswers() {
+    setShowWrong(!showWrong);
   }
 
 
@@ -53,6 +65,9 @@ const Quiz = ({quizData, backToCategory}) => {
             You scored {score} out of {formattedData.length}
           </span>
           <button className="score-button" onClick={backToCategory}>Back to Category Selection</button>
+          <button className="score-button" onClick={handleWrongAnswers}>
+            {!showWrong ? 'Show Wrong Answers' : 'Hide Wrong Answers'}
+          </button>
         </div>
       ) :
         (<div className="question-section">
@@ -80,7 +95,19 @@ const Quiz = ({quizData, backToCategory}) => {
           </div>
         </div>)
       }
-
+      {showWrong ? (
+        <div className="wrong-answer-container">
+          {
+            wrongAnswers.map(answer => (
+              <div key={answer.question} className="wrong-answer">
+                <p>Question: {answer.question}</p>
+                <p className="your-answer">Your answer: {answer.selection}</p>
+                <p className="correct-answer">Correct answer: {answer.correctAnswer}</p>
+              </div>
+            ))
+          }
+        </div>
+      ) : null}
     </div>
   );
 };
