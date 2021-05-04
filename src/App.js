@@ -77,8 +77,8 @@ function App() {
               key="title"
               initial={{height: 0}}
               animate={{height: '300px'}}
-              exit={{height: 0}}
-              transition={{duration: .5}}
+              exit={{width: 0}}
+              transition={{duration: .3}}
             >
               <h1 className="title-text">Welcome to Pick a Quiz!</h1>
               <button

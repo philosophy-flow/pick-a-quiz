@@ -59,6 +59,7 @@ body {
   border-radius: 10px;
   position: relative;
   overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .title-text {
