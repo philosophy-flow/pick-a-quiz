@@ -55,11 +55,10 @@ body {
   max-width: 800px;
   background-color: #3C4856;
   color: #fff;
-  height: 50%;
-  max-height: 300px;
-  min-height: 250px;
+  height: 300px;
   border-radius: 10px;
   position: relative;
+  overflow-y: hidden;
 }
 
 .title-text {
@@ -94,6 +93,7 @@ body {
   align-items: center;
   max-width: 1000px;
   margin: 0 auto;
+  overflow-y: hidden;
 }
 
 .category {

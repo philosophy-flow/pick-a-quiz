@@ -59,7 +59,14 @@ const Quiz = ({quizData, backToCategory}) => {
 
 
   return (
-    <div className="Quiz">
+    <motion.div
+      className="Quiz"
+      key="quiz"
+      initial={{height: 0}}
+      animate={{height: 'auto'}}
+      exit={{height: 0}}
+      transition={{duration: .5}}
+    >
       {showScore ? (
         <div className='score-container'>
           <span className="score-text">
@@ -118,7 +125,7 @@ const Quiz = ({quizData, backToCategory}) => {
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 
