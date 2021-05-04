@@ -40,10 +40,7 @@
   border-radius: 10px;
   border: none;
   cursor: pointer;
-}
-
-.answer:hover {
-  background-color: rgba(159, 172, 189, 1);
+  background-color: #fff;
 }
 
 
