@@ -42,19 +42,19 @@ const Quiz = ({quizData, backToCategory}) => {
   return (
     <div className="Quiz">
       {showScore ? (
-        <div className='score'>
-          <span>
+        <div className='score-container'>
+          <span className="score-text">
             You scored {score} out of {formattedData.length}
           </span>
-          <button onClick={backToCategory}>Back to Category Selection</button>
+          <button className="score-button" onClick={backToCategory}>Back to Category Selection</button>
         </div>
       ) :
         (<div className="question-section">
-          <div className="count">
-            <span>Question {currentQuestion + 1} / {formattedData.length}</span>
+          <div className="count-container">
+            <span className="count-text">Question {currentQuestion + 1} / {formattedData.length}</span>
           </div>
           <div className="question">{formattedData[currentQuestion].question}</div>
-          <div className="answers">
+          <div className="answers-container">
             {
               formattedData[currentQuestion].allAnswers.map(
                 answer => (

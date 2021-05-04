@@ -45,8 +45,8 @@ function App() {
           break;
       }
       const url =
-      `https://opentdb.com/api.php?amount=10&encode=url3986&type=multiple&difficulty=easy&category=${categoryId}`;
-      
+      `https://opentdb.com/api.php?amount=10&encode=url3986&type=multiple&category=${categoryId}`;
+
       fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -60,6 +60,7 @@ function App() {
 
   // reset app to category selection
   function backToCategory() {
+    setActiveCategory('');
     setActiveScreen('categories');
   }
 
