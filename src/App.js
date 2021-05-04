@@ -47,7 +47,7 @@ function App() {
           break;
       }
       const url =
-      `https://opentdb.com/api.php?amount=10&encode=url3986&type=multiple&category=${categoryId}`;
+      `https://opentdb.com/api.php?amount=10&encode=url3986&category=${categoryId}`;
 
       fetch(url)
         .then(response => response.json())
