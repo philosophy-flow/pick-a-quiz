@@ -9,6 +9,9 @@ const Quiz = ({quizData, backToCategory}) => {
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
 
+  const [wrongAnswers, setWrongAnswers] = useState([]);
+  const [showWrong, setShowWrong] = useState(false);
+
   // format encoded response data
   const formattedData = quizData.map(item => {
     return {
@@ -24,13 +27,16 @@ const Quiz = ({quizData, backToCategory}) => {
   });
 
 
-  function handleAnswerSelect(selection, correctAnswer) {
+  function handleAnswerSelect(selection, correctAnswer, question) {
     if (currentQuestion + 1 < formattedData.length) {
       if (selection === correctAnswer) {
         setScore(score + 1);
         setCurrentQuestion(currentQuestion + 1);
       } else {
         setCurrentQuestion(currentQuestion + 1);
+        setWrongAnswers(wrongAnswers =>
+          [...wrongAnswers, {question, selection, correctAnswer}]
+        )
       }
     } else {
       setShowScore(true);
@@ -61,7 +67,12 @@ const Quiz = ({quizData, backToCategory}) => {
                   <button
                     key={answer}
                     className="answer"
-                    onClick={() => handleAnswerSelect(answer, formattedData[currentQuestion].correctAnswer)}>
+                    onClick={() => handleAnswerSelect(
+                      answer,
+                      formattedData[currentQuestion].correctAnswer,
+                      formattedData[currentQuestion].question
+                    )}
+                  >
                     {answer}
                   </button>)
               )
@@ -69,6 +80,7 @@ const Quiz = ({quizData, backToCategory}) => {
           </div>
         </div>)
       }
+
     </div>
   );
 };
